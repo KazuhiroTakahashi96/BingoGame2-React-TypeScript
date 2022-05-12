@@ -6,7 +6,7 @@ import ReachBingoNum from "./component/reach_bingo_num/ReachBingoNum";
 
 function App() {
   return (
-    <div className="App" style={{ textAlign: "center" }}>
+    <div className="App" style={{ textAlign: "center", fontSize: "20px" }}>
       <header style={{ margin: "30px", fontSize: "25px" }}>
         Bingo Game in React/TypeScript
       </header>
@@ -24,7 +24,7 @@ function App() {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-around",
           textAlign: "center",
           margin: "30px",
         }}
