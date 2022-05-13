@@ -1,13 +1,18 @@
 import React from "react";
 
+const numStyle = {
+  margin: "5px",
+  padding: "5px",
+};
+
 const ColumnNum = () => {
   return (
-    <div style={{ margin: "5px", padding: "5px", fontSize: "15px" }}>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
+    <div>
+      <p style={numStyle}>10</p>
+      <p style={numStyle}>10</p>
+      <p style={numStyle}>10</p>
+      <p style={numStyle}>10</p>
+      <p style={numStyle}>10</p>
     </div>
   );
 };

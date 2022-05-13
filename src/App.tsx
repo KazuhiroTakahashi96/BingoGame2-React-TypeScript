@@ -60,6 +60,12 @@ function App() {
       <form action="" onSubmit={handleSubmit}>
         <label htmlFor="bingo_option">ビンゴの列数を選択してください</label>
         <select
+          style={{
+            width: "110px",
+            height: "28px",
+            fontSize: "16px",
+            margin: "0 5px",
+          }}
           name="bingo_option"
           value={option}
           onChange={(e) => setOption(Number(e.target.value))}
