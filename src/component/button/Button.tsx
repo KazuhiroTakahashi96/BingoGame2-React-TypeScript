@@ -5,7 +5,7 @@ type Props = {
   onClick: any;
 };
 
-const style = {
+const btnStyle = {
   width: "120px",
   height: "30px",
   fontSize: "16px",
@@ -16,7 +16,7 @@ const style = {
 
 const Button = (props: Props) => {
   return (
-    <button style={style} onClick={props.onClick}>
+    <button style={btnStyle} onClick={props.onClick}>
       {props.text}
     </button>
   );

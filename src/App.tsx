@@ -39,10 +39,13 @@ function App() {
   // 何列のビンゴか、その値の更新state
   const [option, setOption] = useState<number>(5);
   const [ballCount, setBallCount] = useState<number>(0);
+  const [showHideBtn, setShowHideBtn] = useState<boolean>(true);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(option);
+    // ボタンの表示非表示
+    setShowHideBtn(!showHideBtn);
+
     // 空の二次元配列の作成処理
     for (let i = 0; i < option; i++) {
       col_row_Array[i] = [];
@@ -57,46 +60,53 @@ function App() {
         Bingo Game in React/TypeScript
       </header>
 
-      <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="bingo_option">ビンゴの列数を選択してください</label>
-        <select
-          style={{
-            width: "110px",
-            height: "28px",
-            fontSize: "16px",
-            margin: "0 5px",
-          }}
-          name="bingo_option"
-          value={option}
-          onChange={(e) => setOption(Number(e.target.value))}
-        >
-          <option defaultValue="5">5列×5列</option>
-          <option value="7">7列×7列</option>
-          <option value="9">9列×9列</option>
-          <option value="11">11列×11列</option>
-          <option value="13">13列×13列</option>
-        </select>
-      </form>
-      <Button text={"カード作成"} onClick={handleSubmit} />
-      <Button
-        text={"ボールを引く"}
-        onClick={() => setBallCount(ballCount + 1)}
-      />
+      {showHideBtn && (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="bingo_option">ビンゴの列数を選択してください</label>
+          <select
+            style={{
+              width: "110px",
+              height: "28px",
+              fontSize: "16px",
+              margin: "0 5px",
+            }}
+            name="bingo_option"
+            value={option}
+            onChange={(e) => setOption(Number(e.target.value))}
+          >
+            <option defaultValue="5">5列×5列</option>
+            <option value="7">7列×7列</option>
+            <option value="9">9列×9列</option>
+            <option value="11">11列×11列</option>
+            <option value="13">13列×13列</option>
+          </select>
+        </form>
+      )}
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          textAlign: "center",
-          margin: "30px",
-        }}
-      >
-        <BingoCard />
-        <div>
-          <BingoBall ballCount={ballCount} />
-          <ReachBingoNum />
+      {showHideBtn && <Button text={"カード作成"} onClick={handleSubmit} />}
+      {showHideBtn || (
+        <Button
+          text={"ボールを引く"}
+          onClick={() => setBallCount(ballCount + 1)}
+        />
+      )}
+
+      {showHideBtn || (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            textAlign: "center",
+            margin: "30px",
+          }}
+        >
+          <BingoCard />
+          <div>
+            <BingoBall ballCount={ballCount} />
+            <ReachBingoNum />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
