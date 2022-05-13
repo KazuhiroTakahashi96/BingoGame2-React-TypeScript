@@ -4,6 +4,37 @@ import BingoCard from "./component/bingo_card/BingoCard";
 import Button from "./component/button/Button";
 import ReachBingoNum from "./component/reach_bingo_num/ReachBingoNum";
 
+// ビンゴカードの数字を格納する配列。二次元配列にする
+const col_row_Array: number[][] = [];
+
+// 出たビンゴボールの数字を格納していく配列の作成
+const ballNumArray: number[] = [];
+
+// 1〜最大195（13列の時）の値が入る配列
+const bingoBallArray: number[] = [];
+
+// =========== ビンゴカードの数字を作成する関数 ===========
+function makeRandomNum(option: number) {
+  for (let i = 0; i < option; i++) {
+    // 1〜15を持った長さ15の配列の作成
+    const array = [];
+    for (let k = 1; k <= 15; k++) {
+      array.push(k);
+    }
+
+    for (let j = 0; j < option; j++) {
+      // ランダムな値を取得
+      const randomNum = Math.floor(Math.random() * array.length);
+      col_row_Array[i].push(array[randomNum] + i * 15);
+
+      // 数字が重複しないよう、元の配列から削除
+      array.splice(randomNum, 1);
+    }
+  }
+
+  return col_row_Array;
+}
+
 function App() {
   // 何列のビンゴか、その値の更新state
   const [option, setOption] = useState<number>(5);
@@ -12,6 +43,13 @@ function App() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(option);
+    // 空の二次元配列の作成処理
+    for (let i = 0; i < option; i++) {
+      col_row_Array[i] = [];
+    }
+
+    const result = makeRandomNum(option);
+    console.log(result);
   };
   return (
     <div className="App" style={{ textAlign: "center", fontSize: "20px" }}>
