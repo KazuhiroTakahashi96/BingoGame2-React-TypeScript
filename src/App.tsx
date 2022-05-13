@@ -5,7 +5,9 @@ import Button from "./component/button/Button";
 import ReachBingoNum from "./component/reach_bingo_num/ReachBingoNum";
 
 function App() {
+  // 何列のビンゴか、その値の更新state
   const [option, setOption] = useState<number>(5);
+  const [ballCount, setBallCount] = useState<number>(0);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -32,7 +34,10 @@ function App() {
         </select>
       </form>
       <Button text={"カード作成"} onClick={handleSubmit} />
-      <Button text={"ボールを引く"} onClick={() => console.log("bbb")} />
+      <Button
+        text={"ボールを引く"}
+        onClick={() => setBallCount(ballCount + 1)}
+      />
 
       <div
         style={{
@@ -44,7 +49,7 @@ function App() {
       >
         <BingoCard />
         <div>
-          <BingoBall />
+          <BingoBall ballCount={ballCount} />
           <ReachBingoNum />
         </div>
       </div>
