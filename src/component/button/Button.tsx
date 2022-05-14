@@ -12,6 +12,7 @@ const btnStyle = {
   margin: "5px",
   border: "1px",
   borderRadius: "5px",
+  cursor: "pointer",
 };
 
 const Button = (props: Props) => {

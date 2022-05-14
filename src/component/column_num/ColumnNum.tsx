@@ -1,18 +1,23 @@
 import React from "react";
 
+type Props = {
+  col_NumArray: number[];
+  centerIndex: number | null;
+};
+
 const numStyle = {
   margin: "5px",
   padding: "5px",
 };
 
-const ColumnNum = () => {
+const ColumnNum = (props: Props) => {
   return (
     <div>
-      <p style={numStyle}>10</p>
-      <p style={numStyle}>10</p>
-      <p style={numStyle}>10</p>
-      <p style={numStyle}>10</p>
-      <p style={numStyle}>10</p>
+      {props.col_NumArray.map((num, i) => (
+        <p key={i} style={numStyle}>
+          {i === props.centerIndex ? "free" : num}
+        </p>
+      ))}
     </div>
   );
 };

@@ -1,14 +1,21 @@
 import React from "react";
 import ColumnNum from "../column_num/ColumnNum";
 
-const BingoCard = () => {
+type Props = {
+  col_row_Array: number[][];
+};
+
+const BingoCard = (props: Props) => {
+  const centerIndex = (props.col_row_Array.length - 1) / 2;
   return (
     <div style={{ display: "flex" }}>
-      <ColumnNum />
-      <ColumnNum />
-      <ColumnNum />
-      <ColumnNum />
-      <ColumnNum />
+      {props.col_row_Array.map((col_NumArray, i) => (
+        <ColumnNum
+          key={i}
+          col_NumArray={col_NumArray}
+          centerIndex={i === centerIndex ? centerIndex : null}
+        />
+      ))}
     </div>
   );
 };

@@ -31,19 +31,19 @@ function makeRandomNum(option: number) {
       array.splice(randomNum, 1);
     }
   }
-
-  return col_row_Array;
 }
 
 function App() {
   // 何列のビンゴか、その値の更新state
   const [option, setOption] = useState<number>(5);
+  // n個目のボール
   const [ballCount, setBallCount] = useState<number>(0);
   const [showHideBtn, setShowHideBtn] = useState<boolean>(true);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    // ボタンの表示非表示
+
+    // 各要素の表示非表示
     setShowHideBtn(!showHideBtn);
 
     // 空の二次元配列の作成処理
@@ -51,8 +51,11 @@ function App() {
       col_row_Array[i] = [];
     }
 
-    const result = makeRandomNum(option);
-    console.log(result);
+    for (let i = 1; i <= option * 15; i++) {
+      bingoBallArray.push(i);
+    }
+
+    makeRandomNum(option);
   };
   return (
     <div className="App" style={{ textAlign: "center", fontSize: "20px" }}>
@@ -87,7 +90,9 @@ function App() {
       {showHideBtn || (
         <Button
           text={"ボールを引く"}
-          onClick={() => setBallCount(ballCount + 1)}
+          onClick={() => {
+            setBallCount(ballCount + 1);
+          }}
         />
       )}
 
@@ -100,7 +105,7 @@ function App() {
             margin: "30px",
           }}
         >
-          <BingoCard />
+          <BingoCard col_row_Array={col_row_Array} />
           <div>
             <BingoBall ballCount={ballCount} />
             <ReachBingoNum />
