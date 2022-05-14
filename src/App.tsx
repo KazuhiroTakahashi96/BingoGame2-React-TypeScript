@@ -121,11 +121,17 @@ function App() {
             margin: "30px",
           }}
         >
-          <BingoCard col_row_Array={col_row_Array} />
+          <BingoCard
+            col_row_Array={col_row_Array}
+            ballNumArray={ballNumArray}
+          />
           <div>
             <BingoBall ballCount={ballCount} bingoBallNum={bingoBallNum} />
             <br />
-            <ReachBingoNum />
+            <ReachBingoNum
+              col_row_Array={col_row_Array}
+              ballNumArray={ballNumArray}
+            />
           </div>
         </div>
       )}

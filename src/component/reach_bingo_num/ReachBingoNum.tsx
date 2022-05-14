@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const ReachBingoNum = () => {
+type Props = {
+  col_row_Array: number[][];
+  ballNumArray: number[];
+};
+
+const ReachBingoNum = (props: Props) => {
   const [reachNum, setReachNum] = useState<number>(0);
   const [bingoNum, setBingoNum] = useState<number>(0);
   return (
