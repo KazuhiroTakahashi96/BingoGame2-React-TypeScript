@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
   ballCount: number;
+  bingoBallNum: number;
+};
+
+const style = {
+  fontSize: "25px",
+  fontWeight: "bold",
 };
 
 const BingoBall = (props: Props) => {
-  const [ballNum, setBallNum] = useState<number>(0);
   return (
     <div>
       <div>
@@ -13,15 +18,10 @@ const BingoBall = (props: Props) => {
         個目のボール
       </div>
       <br />
-      <div style={style}>{ballNum}</div>
+      <div style={style}>{props.bingoBallNum}</div>
       <br />
     </div>
   );
 };
 
 export default BingoBall;
-
-const style = {
-  fontSize: "25px",
-  fontWeight: "bold",
-};

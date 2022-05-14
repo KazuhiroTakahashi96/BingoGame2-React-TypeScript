@@ -40,6 +40,9 @@ function App() {
   const [ballCount, setBallCount] = useState<number>(0);
   const [showHideBtn, setShowHideBtn] = useState<boolean>(true);
 
+  // 引いたビンゴボールの更新
+  const [bingoBallNum, setBingoBallNum] = useState<number>(0);
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -57,6 +60,18 @@ function App() {
 
     makeRandomNum(option);
   };
+
+  const takeBingoBall = () => {
+    // 0〜最大194の中で、ランダムな値を取得
+    const randomNum = Math.floor(Math.random() * bingoBallArray.length);
+    ballNumArray.unshift(bingoBallArray[randomNum]);
+    // 数字が重複しないよう、元の配列から削除
+    bingoBallArray.splice(randomNum, 1);
+
+    // 引いたビンゴボールの更新
+    setBingoBallNum(ballNumArray[0]);
+  };
+
   return (
     <div className="App" style={{ textAlign: "center", fontSize: "20px" }}>
       <header style={{ margin: "30px", fontSize: "25px" }}>
@@ -92,6 +107,7 @@ function App() {
           text={"ボールを引く"}
           onClick={() => {
             setBallCount(ballCount + 1);
+            takeBingoBall();
           }}
         />
       )}
@@ -107,7 +123,8 @@ function App() {
         >
           <BingoCard col_row_Array={col_row_Array} />
           <div>
-            <BingoBall ballCount={ballCount} />
+            <BingoBall ballCount={ballCount} bingoBallNum={bingoBallNum} />
+            <br />
             <ReachBingoNum />
           </div>
         </div>
