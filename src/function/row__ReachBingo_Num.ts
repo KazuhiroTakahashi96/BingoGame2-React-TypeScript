@@ -1,21 +1,28 @@
 // ===== 横列のリーチ数、ビンゴ数をチェックする関数 =====
-const row__ReachBingo_Num = (array: number[][], minus: number): number => {
-  // 二次元配列そのものを引数に持ってくる
+const row__ReachBingo_Num = (
+  colNumArray: number[][],
+  ballNumArray: number[],
+  minus: number
+): number => {
+  // 二次元配列そのものと、引いたビンゴボールの値が入った配列を引数に持ってくる
+
   let totalRow_ReachBingo_Num: number = 0;
 
-  for (let j = 0; j < array.length; j++) {
+  for (let j = 0; j < colNumArray.length; j++) {
     let reachBingo_Num: number = 0;
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < colNumArray.length; i++) {
       // 1行ごとにリーチ数、ビンゴ数を計算するfor文
-      //   if (array[i][j].className === "matchedNum") {
-      //     // true(穴が空いてる)なら
-      //     reachBingo_Num += 1;
-      //   }
-      reachBingo_Num += 1;
+      if (
+        ballNumArray.includes(colNumArray[i][j]) ||
+        colNumArray[i][j] === 1000
+      ) {
+        // true(穴が空いてる)なら
+        reachBingo_Num += 1;
+      }
     }
-    // reachBingo_Num === array.length - minus
-    //   ? (totalRow_ReachBingo_Num += 1)
-    //   : 0;
+    if (reachBingo_Num === colNumArray.length - minus) {
+      totalRow_ReachBingo_Num += 1;
+    }
   }
   return totalRow_ReachBingo_Num;
 };

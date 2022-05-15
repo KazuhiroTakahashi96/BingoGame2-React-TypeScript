@@ -2,7 +2,6 @@ import React from "react";
 
 type Props = {
   col_NumArray: number[];
-  centerIndex: number | null;
   ballNumArray: number[];
 };
 
@@ -56,12 +55,12 @@ const ColumnNum = (props: Props) => {
         <p
           key={i}
           style={
-            i === props.centerIndex || props.ballNumArray.includes(num)
+            num === 1000 || props.ballNumArray.includes(num)
               ? matchedNumStyle
               : numStyle
           }
         >
-          {i === props.centerIndex ? "free" : num}
+          {num === 1000 ? "free" : num}
         </p>
       ))}
     </div>

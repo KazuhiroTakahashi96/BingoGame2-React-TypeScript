@@ -10,7 +10,7 @@ const col__ReachBingo_Num = (
 
   for (let i = 0; i < colNumArray.length; i++) {
     // true(穴が空いてる)なら
-    if (ballNumArray.includes(colNumArray[i])) {
+    if (ballNumArray.includes(colNumArray[i]) || colNumArray[i] === 1000) {
       col__reachBingo_Num += 1;
     }
   }

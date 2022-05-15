@@ -59,6 +59,11 @@ function App() {
     }
 
     makeRandomNum(option);
+
+    // 真ん中の数字を1000に置き換えておく。
+    // freeに置換したり、リーチ数・ビンゴ数の計算処理がしやすいように
+    const centerIndex = (option - 1) / 2;
+    col_row_Array[centerIndex][centerIndex] = 1000;
   };
 
   const takeBingoBall = () => {

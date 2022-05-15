@@ -16,11 +16,6 @@ const ReachBingoNum = (props: Props) => {
   // ==== トータルビンゴ数 ====
   let totalBingoNumber = 0;
 
-  useEffect(() => {
-    const centerIndex = (props.col_row_Array.length - 1) / 2;
-    console.log(centerIndex);
-  }, [props.col_row_Array.length]);
-
   for (let i = 0; i < props.col_row_Array.length; i++) {
     // 縦列のチェック（リーチ数）
     totalReachNumber += col__ReachBingo_Num(
@@ -37,14 +32,30 @@ const ReachBingoNum = (props: Props) => {
   }
 
   // 横列のチェック（リーチ数）
-  totalReachNumber += row__ReachBingo_Num(props.col_row_Array, 1);
+  totalReachNumber += row__ReachBingo_Num(
+    props.col_row_Array,
+    props.ballNumArray,
+    1
+  );
   // 横列のチェック（ビンゴ数）
-  totalBingoNumber += row__ReachBingo_Num(props.col_row_Array, 0);
+  totalBingoNumber += row__ReachBingo_Num(
+    props.col_row_Array,
+    props.ballNumArray,
+    0
+  );
 
   // 斜め列のチェック（リーチ数）
-  totalReachNumber += cross__ReachBingo_Num(props.col_row_Array, 1);
+  totalReachNumber += cross__ReachBingo_Num(
+    props.col_row_Array,
+    props.ballNumArray,
+    1
+  );
   // 斜め列のチェック（ビンゴ数）
-  totalBingoNumber += cross__ReachBingo_Num(props.col_row_Array, 0);
+  totalBingoNumber += cross__ReachBingo_Num(
+    props.col_row_Array,
+    props.ballNumArray,
+    0
+  );
 
   // 画面にリーチ数、ビンゴ数の出力
   useEffect(() => {
