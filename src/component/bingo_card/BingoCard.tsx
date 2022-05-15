@@ -10,7 +10,7 @@ const BingoCard = (props: Props) => {
   const centerIndex = (props.col_row_Array.length - 1) / 2;
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "center", width: "70vw" }}>
       {props.col_row_Array.map((col_NumArray, i) => (
         <ColumnNum
           key={i}

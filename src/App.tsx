@@ -125,7 +125,7 @@ function App() {
             col_row_Array={col_row_Array}
             ballNumArray={ballNumArray}
           />
-          <div>
+          <div style={{ width: "30vw" }}>
             <BingoBall ballCount={ballCount} bingoBallNum={bingoBallNum} />
             <br />
             <ReachBingoNum

@@ -15,6 +15,8 @@ type Props = {
 //   width: "35px",
 //   height: "35px",
 //   color: "black",
+//   borderRadius: "20px 20px 0 0",
+//   backgroundColor:
 // };
 
 const numStyle = {
@@ -26,6 +28,7 @@ const numStyle = {
   width: "35px",
   height: "35px",
   color: "black",
+  borderRadius: "20px 20px 0 0",
   backgroundColor: "antiquewhite",
 };
 const matchedNumStyle = {
@@ -37,8 +40,8 @@ const matchedNumStyle = {
   width: "35px",
   height: "35px",
   color: "black",
-  backgroundColor: "gold",
   borderRadius: "20px 20px 0 0",
+  backgroundColor: "gold",
 };
 
 const ColumnNum = (props: Props) => {
