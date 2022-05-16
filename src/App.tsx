@@ -38,7 +38,9 @@ function App() {
   const [option, setOption] = useState<number>(5);
   // n個目のボール
   const [ballCount, setBallCount] = useState<number>(0);
-  const [showHideBtn, setShowHideBtn] = useState<boolean>(true);
+
+  const [showHideEle, setShowHideEle] = useState<boolean>(false);
+  const [hideBtn, setHideBtn] = useState<boolean>(true);
 
   // 引いたビンゴボールの更新
   const [bingoBallNum, setBingoBallNum] = useState<number>(0);
@@ -47,7 +49,8 @@ function App() {
     e.preventDefault();
 
     // 各要素の表示非表示
-    setShowHideBtn(!showHideBtn);
+    setShowHideEle(!showHideEle);
+    setHideBtn(!hideBtn);
 
     // 空の二次元配列の作成処理
     for (let i = 0; i < option; i++) {
@@ -74,7 +77,12 @@ function App() {
     bingoBallArray.splice(randomNum, 1);
 
     // 引いたビンゴボールの更新
-    setBingoBallNum(ballNumArray[0]);
+    if (bingoBallArray.length === 0) {
+      setBingoBallNum(ballNumArray[0]);
+      setHideBtn(true);
+    } else {
+      setBingoBallNum(ballNumArray[0]);
+    }
   };
 
   return (
@@ -83,63 +91,63 @@ function App() {
         Bingo Game in React/TypeScript
       </header>
 
-      {showHideBtn && (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="bingo_option">ビンゴの列数を選択してください</label>
-          <select
-            style={{
-              width: "110px",
-              height: "28px",
-              fontSize: "16px",
-              margin: "0 5px",
-            }}
-            name="bingo_option"
-            value={option}
-            onChange={(e) => setOption(Number(e.target.value))}
-          >
-            <option defaultValue="5">5列×5列</option>
-            <option value="7">7列×7列</option>
-            <option value="9">9列×9列</option>
-            <option value="11">11列×11列</option>
-            <option value="13">13列×13列</option>
-          </select>
-        </form>
-      )}
-
-      {showHideBtn && <Button text={"カード作成"} onClick={handleSubmit} />}
-      {showHideBtn || (
-        <Button
-          text={"ボールを引く"}
-          onClick={() => {
-            setBallCount(ballCount + 1);
-            takeBingoBall();
-          }}
-        />
-      )}
-
-      {showHideBtn || (
-        <div
+      <form
+        onSubmit={handleSubmit}
+        style={showHideEle ? { display: "none" } : undefined}
+      >
+        <label htmlFor="bingo_option">ビンゴの列数を選択してください</label>
+        <select
           style={{
-            display: "flex",
-            justifyContent: "space-around",
-            textAlign: "center",
-            margin: "30px",
+            width: "110px",
+            height: "28px",
+            fontSize: "16px",
+            margin: "0 5px",
           }}
+          name="bingo_option"
+          value={option}
+          onChange={(e) => setOption(Number(e.target.value))}
         >
-          <BingoCard
+          <option defaultValue="5">5列×5列</option>
+          <option value="7">7列×7列</option>
+          <option value="9">9列×9列</option>
+          <option value="11">11列×11列</option>
+          <option value="13">13列×13列</option>
+        </select>
+      </form>
+
+      <Button style={showHideEle} text={"カード作成"} onClick={handleSubmit} />
+
+      <Button
+        style={hideBtn}
+        text={"ボールを引く"}
+        onClick={() => {
+          setBallCount(ballCount + 1);
+          takeBingoBall();
+        }}
+      />
+
+      <div
+        style={
+          showHideEle
+            ? {
+                display: "flex",
+                justifyContent: "space-around",
+                textAlign: "center",
+                margin: "30px",
+              }
+            : { display: "none" }
+        }
+      >
+        <BingoCard col_row_Array={col_row_Array} ballNumArray={ballNumArray} />
+        <div style={{ width: "30vw" }}>
+          <BingoBall ballCount={ballCount} bingoBallNum={bingoBallNum} />
+          <br />
+          <ReachBingoNum
             col_row_Array={col_row_Array}
             ballNumArray={ballNumArray}
           />
-          <div style={{ width: "30vw" }}>
-            <BingoBall ballCount={ballCount} bingoBallNum={bingoBallNum} />
-            <br />
-            <ReachBingoNum
-              col_row_Array={col_row_Array}
-              ballNumArray={ballNumArray}
-            />
-          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

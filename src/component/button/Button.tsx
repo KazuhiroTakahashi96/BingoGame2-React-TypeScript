@@ -3,6 +3,7 @@ import React from "react";
 type Props = {
   text: string;
   onClick: any;
+  style: boolean;
 };
 
 const btnStyle = {
@@ -15,9 +16,13 @@ const btnStyle = {
   cursor: "pointer",
 };
 
+const hideStyle = {
+  display: "none",
+};
+
 const Button = (props: Props) => {
   return (
-    <button style={btnStyle} onClick={props.onClick}>
+    <button style={props.style ? hideStyle : btnStyle} onClick={props.onClick}>
       {props.text}
     </button>
   );
