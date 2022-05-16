@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   text: string;
   onClick: any;
-  style: boolean;
+  bool: boolean;
 };
 
 const btnStyle = {
@@ -22,7 +22,7 @@ const hideStyle = {
 
 const Button = (props: Props) => {
   return (
-    <button style={props.style ? hideStyle : btnStyle} onClick={props.onClick}>
+    <button style={props.bool ? hideStyle : btnStyle} onClick={props.onClick}>
       {props.text}
     </button>
   );

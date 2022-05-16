@@ -38,7 +38,7 @@ function App() {
   const [option, setOption] = useState<number>(5);
   // n個目のボール
   const [ballCount, setBallCount] = useState<number>(0);
-
+  // 要素の表示非表示の操作する用のstate
   const [showHideEle, setShowHideEle] = useState<boolean>(false);
   const [hideBtn, setHideBtn] = useState<boolean>(true);
 
@@ -115,10 +115,10 @@ function App() {
         </select>
       </form>
 
-      <Button style={showHideEle} text={"カード作成"} onClick={handleSubmit} />
+      <Button bool={showHideEle} text={"カード作成"} onClick={handleSubmit} />
 
       <Button
-        style={hideBtn}
+        bool={hideBtn}
         text={"ボールを引く"}
         onClick={() => {
           setBallCount(ballCount + 1);

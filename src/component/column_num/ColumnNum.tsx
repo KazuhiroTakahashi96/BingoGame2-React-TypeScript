@@ -5,45 +5,23 @@ type Props = {
   ballNumArray: number[];
 };
 
-// const commonStyle = {
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "center",
-//   margin: "5px",
-//   padding: "5px",
-//   width: "35px",
-//   height: "35px",
-//   color: "black",
-//   borderRadius: "20px 20px 0 0",
-//   backgroundColor:
-// };
-
-const numStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "5px",
-  padding: "5px",
-  width: "35px",
-  height: "35px",
-  color: "black",
-  borderRadius: "20px 20px 0 0",
-  backgroundColor: "antiquewhite",
-};
-const matchedNumStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "5px",
-  padding: "5px",
-  width: "35px",
-  height: "35px",
-  color: "black",
-  borderRadius: "20px 20px 0 0",
-  backgroundColor: "gold",
-};
-
 const ColumnNum = (props: Props) => {
+  function BG_Color(color: string): object {
+    const style = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "5px",
+      padding: "5px",
+      width: "35px",
+      height: "35px",
+      color: "black",
+      borderRadius: "20px 20px 0 0",
+      backgroundColor: color,
+    };
+    return style;
+  }
+
   return (
     <div
       style={{
@@ -56,8 +34,8 @@ const ColumnNum = (props: Props) => {
           key={i}
           style={
             num === 1000 || props.ballNumArray.includes(num)
-              ? matchedNumStyle
-              : numStyle
+              ? BG_Color("gold")
+              : BG_Color("antiquewhite")
           }
         >
           {num === 1000 ? "free" : num}
