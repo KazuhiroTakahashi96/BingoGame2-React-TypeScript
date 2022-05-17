@@ -45,6 +45,8 @@ function App() {
   // 引いたビンゴボールの更新
   const [bingoBallNum, setBingoBallNum] = useState<number>(0);
 
+  const [endText, setEndText] = useState<boolean>(false);
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -79,7 +81,8 @@ function App() {
     // 引いたビンゴボールの更新
     if (bingoBallArray.length === 0) {
       setBingoBallNum(ballNumArray[0]);
-      setHideBtn(true);
+      setHideBtn(!hideBtn);
+      setEndText(!endText);
     } else {
       setBingoBallNum(ballNumArray[0]);
     }
@@ -125,6 +128,9 @@ function App() {
           takeBingoBall();
         }}
       />
+      {endText && (
+        <p style={{ fontWeight: "bold", fontSize: "25px" }}>終了！</p>
+      )}
 
       <div
         style={
